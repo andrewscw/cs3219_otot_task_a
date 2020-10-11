@@ -1,0 +1,21 @@
+version: '3'
+services:
+  frontend:
+    build: ./docker-reactApp
+    image: "reactapp:1.0.0"
+    networks:
+      - my-network
+  backend:
+    build: ./docker-expressApp
+    image: "expressapp:1.0.0"
+    networks:
+      - my-network
+  revproxy:
+    build: ./docker-reverseProxy
+    image: "reverseproxy:1.0.0"
+    networks:
+      - my-network
+    ports:
+      - "80:80"
+networks:
+    my-network:
